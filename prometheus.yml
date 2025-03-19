@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s  # Intervalo de coleta de métricas
+
+scrape_configs:
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis_exporter:9121']  # Nome do serviço Redis Exporter
+
+  - job_name: 'node_app'
+    static_configs:
+      - targets: ['node_app:8081']  # Nome do serviço Node.js (se você precisar coletar as métricas)
+

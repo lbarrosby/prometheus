@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"  # Expondo a porta do Prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Volume para o arquivo de configuração
+    networks:
+      - app-network
+
+  redis_exporter:
+    image: oliver006/redis_exporter
+    container_name: redis_exporter
+    environment:
+      - REDIS_ADDR=redis:6379  # Conectar ao Redis (nome do serviço Docker)
+    ports:
+      - "9121:9121"  # Expondo a porta do Redis Exporter
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
