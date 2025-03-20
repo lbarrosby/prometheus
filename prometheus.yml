@@ -10,3 +10,6 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:8081']  # Nome do serviço Node.js (se você precisar coletar as métricas)
 
+  - job_name: 'go_app'
+    static_configs:
+      - targets: ['localhost:8085']
